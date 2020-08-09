@@ -3,7 +3,7 @@ import axios from "axios";
 import { Container, Icon } from "semantic-ui-react";
 import { useParams } from "react-router-dom";
 
-import { Patient, PatientFull, Gender } from "../types";
+import { Patient, PatientFull, Gender, Entry } from "../types";
 import { apiBaseUrl } from "../constants";
 import { useStateValue, setPatientFullData } from "../state";
 
@@ -34,6 +34,27 @@ const PatientPage: React.FC = () => {
     [Gender.Female]: (<Icon name='venus' />),
     [Gender.Other]: (<Icon name='genderless' />)
   }[patient.gender] : null;
+
+  const renderEntry = (entry: Entry): JSX.Element | null => {    
+    if (!entry) return null;
+    return (      
+      <div>
+      {entry.date} <i>{entry.description}</i><br/>
+      { ((entry.type === 'OccupationalHealthcare' || entry.type === 'Hospital') && entry.diagnosisCodes)
+      ? 
+        <ul>
+          { entry.diagnosisCodes.map((code, idx) => {
+              return (<li key={idx}>{code}</li>);
+            })
+          }                     
+        </ul>
+      :
+      null
+      }
+      </div>
+    );
+  };
+
   
   return (
     <div className="App">
@@ -45,11 +66,8 @@ const PatientPage: React.FC = () => {
         ssn: { patient.ssn }<br/>
         occupation: { patient.occupation }<br/>
         date of birth: { patient.dateOfBirth}<br/>
-        entries: <br/>
-        { patient.entries.map((entry, idx) => {
-          return <div key={idx}>entry</div>;
-        })
-        }
+        { patient.entries && patient.entries.length > 0 ? <h3>entries</h3> : null }
+        { patient.entries.map(entry => (renderEntry(entry))) }
         </>
       }
       </Container>      
