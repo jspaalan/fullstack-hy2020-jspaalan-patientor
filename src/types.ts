@@ -75,3 +75,12 @@ export const assertNever = (value: never): never => {
     `Unhandled discriminated union member: ${JSON.stringify(value)}`
   );
 };
+
+// eslint-disable-next-line
+export const isPositiveInteger = (value: any): value is number => {
+  if (!value) return false;  
+  if (Number.isNaN(value)) return false;
+  if (!Number.isInteger(Number(value))) return false;
+  if (Number(value) < 0) return false;
+  return true;
+};
