@@ -20,11 +20,13 @@ const HealthCheckFieldSet: React.FunctionComponent<{}> = () => (
 
 export interface Values {
   healthCheckRating: number;
+  type: string;
 }
 
 export const initialValues = 
 {
-  healthCheckRating: ""
+  healthCheckRating: "",
+  type: 'HealthCheck'
 };
 
 export const validate = (values: Record<string,unknown>): Record<string,string> => {

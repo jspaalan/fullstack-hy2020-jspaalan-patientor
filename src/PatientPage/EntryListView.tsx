@@ -61,7 +61,7 @@ const OccupationalHealthCareEntryView: React.FC<{ entry: OccupationalHealthCareE
 
 
 const HealthCheckEntryView: React.FC<{ entry: HealthCheckEntry }> = ({ entry }) => (
-<Segment>
+  <Segment>
     <h2>{entry.date} <Icon name="heart" size="large" /> health check</h2>
     <div>Specialist: { entry.specialist }</div>
     <div>Health check</div>
@@ -86,11 +86,11 @@ const EntryDetails: React.FC<{ entry: Entry }> = ({ entry }) => {
 const EntryListView: React.FC<{ patient: PatientFull }> = ({ patient }) => {
   if (!patient || !patient.entries || patient.entries.length === 0) {
     return null;
-  } else {
-    return (    
+  } else {    
+    return (
       <div>
         <h3>entries</h3>
-        { patient.entries.map((entry, idx) => (<EntryDetails key={idx} entry={entry} />)) };
+        { patient.entries.map((entry, idx) => (<EntryDetails key={idx} entry={entry} />)) }
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Grid, Button } from "semantic-ui-react";
 //import SelectEntryTypeField, { EntryType } from "./SelectEntryTypeField";
 import { Formik, Form } from "formik";
-import OccupationalHealthCareFieldSet, { initialValues as ohcInitialValues, validate as validateOhc, Values as ValueTypesOhc } from "./OccupationalHealthCheckFieldSet";
+import OccupationalHealthCareFieldSet, { initialValues as ohcInitialValues, validate as validateOhc, Values as ValueTypesOhc } from "./OccupationalHealthCareFieldSet";
 import HealthCheckFieldSet, { initialValues as hcInitialValues, validate as validateHc, Values as ValueTypesHc } from "./HealthCheckFieldSet";
 import HospitalFieldSet, { initialValues as hospitalInitialValues, validate as validateHospital, Values as ValueTypesHospital } from "./HospitalFieldSet";
 import { initialValues as baseInitialValues, validate as validateBase, Values as ValueTypesEntryBase } from "./EntryBaseFieldSet";

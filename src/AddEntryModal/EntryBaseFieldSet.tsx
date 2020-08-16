@@ -33,9 +33,9 @@ export interface Values {
 
 export const initialValues = 
 {
-  date: "2020-08-16",
-  specialist: "The Specialist",
-  description: "Case description",
+  date: "",
+  specialist: "",
+  description: "",
 };
 
 export const validate = (values: Record<string,unknown>): Record<string,string> => {

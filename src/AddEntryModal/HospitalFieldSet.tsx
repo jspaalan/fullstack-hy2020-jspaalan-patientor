@@ -11,36 +11,49 @@ const HospitalFieldSet: React.FunctionComponent<{}> = () => {
 
   return (<React.Fragment>
     <EntryBaseFieldSet />
-    <Field
-      label="Discharge"
-      placeholder="discharge"
-      name="discharge"
-      component={TextField}
-    />
     <DiagnosisSelection
       diagnoses={Object.values(diagnoses)}
       setFieldTouched={setFieldTouched}
       setFieldValue={setFieldValue}
     />
+    <Field
+      label="Discharge date"
+      placeholder="1990-01-01"
+      name="dischargeDate"
+      component={TextField}
+    />
+    <Field
+      label="Discharge criteria"
+      placeholder="criteria"
+      name="dischargeCriteria"
+      component={TextField}
+    />
   </React.Fragment>);
 };
 
 export interface Values {
-  discharge: string;
   diagnosisCodes: Diagnosis[];
+  dischargeDate: string;
+  dischargeCriteria: string;
+  type: string;
 }
 
 export const initialValues = 
 {
   discharge: "",
-  diagnosisCodes: []
+  diagnosisCodes: [],
+  dischargeDate: "",
+  dischargeCriteria: "",
+  type: 'Hospital'
 };
 
 export const validate = (values: Record<string,unknown>): Record<string,string> => {
-  const requiredError = "Field is required";
   const errors: { [field: string]: string } = {};
-  if (!values.discharge) {
-    errors.discharge = requiredError;
+  if (values.dischargeDate && !values.dischargeCriteria) {
+    errors.dischargeCriteria = "Required when discharge date given";
+  }
+  if (values.dischargeCriteria && !values.dischargeDate) {
+    errors.dischargeDate = "Required when discharge criteria given";
   }
   return errors;
 };
